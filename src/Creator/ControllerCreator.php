@@ -14,7 +14,7 @@ class ControllerCreator implements creator{
         }
         $file = 'src/Controllers/'.$name.'.php';
         if( file_exists($file) ) {
-          echo 'Controller already exist';
+          echo 'Controller already exist!' . PHP_EOL;
         } else {
           $controller = file_put_contents ( $file , $this->template(['className' => $name]) );   
         }
@@ -24,13 +24,13 @@ class ControllerCreator implements creator{
   
    public function template($args) {
      return "<?php 
-      namespace Controllers;
+namespace Controllers;
 
-      use Controllers\Controller;
+use Controllers\Controller;
 
-      class {$args['className']} extends Controller {
+class {$args['className']} extends Controller {
 
-      }";
+}";
    }
   
 }
