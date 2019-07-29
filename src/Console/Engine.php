@@ -1,12 +1,12 @@
 <?php
 namespace App\Console;
 
-use App\Creator\Controller;
-use App\Creator\Model;
-use App\Creator\View;
+use App\Creator\ControllerCreator;
+use App\Creator\ModelCreator;
+use App\Creator\ViewCreator;
 
 class Engine {
-    
+  
     private $root;
 
     public function __construct() {
@@ -20,7 +20,8 @@ class Engine {
         if( isset($argv[1]) ) {
             switch($argv[1]) {
                 case 'controller': 
-                    echo "Gear controller '{$argv[1]}'";
+                    $ccreator = new ControllerCreator();
+                    $ccreator->create();
                 break;
                 case 'view':
                     echo "Gear view '{$argv[1]}'";
