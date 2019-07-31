@@ -1,6 +1,3 @@
-<?php
-  namespace Frontend;
-?>
 <h2></h2>
 
 <div class="wrap">
