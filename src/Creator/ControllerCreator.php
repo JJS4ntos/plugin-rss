@@ -24,9 +24,9 @@ class ControllerCreator implements creator{
   
    public function template($args) {
      return "<?php 
-namespace Controllers;
+namespace App\Controllers;
 
-use Controllers\Controller;
+use App\Controllers\Controller;
 
 class {$args['className']} extends Controller {
 
