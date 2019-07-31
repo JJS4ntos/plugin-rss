@@ -4,5 +4,10 @@
     },
     "require": {
         "jenssegers/blade": "^1.2"
+    },
+    "scripts": {
+      "post-install-cmd": [
+        "mkdir src/cache"  
+      ]  
     }
 }
