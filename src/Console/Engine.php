@@ -27,7 +27,8 @@ class Engine {
                     echo "Gear view '{$argv[1]}'";
                 break;
                 case 'model':
-                    echo "Gear model '{$argv[1]}'";
+                    $mcreator = new ModelCreator();
+                    $mcreator->create();
                 break;
                 case 'shortcode':
                     echo "Gear model '{$argv[1]}'";
