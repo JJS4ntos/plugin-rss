@@ -9,6 +9,7 @@ class Setup extends Controller{
     parent::__construct();
     add_action('wp_enqueue_scripts', array($this, 'register_assets') );
     add_action('admin_menu', array($this, 'runcinator_page_setup') );
+    add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
   }
   
   public function runcinator_page_setup(){
@@ -29,6 +30,24 @@ class Setup extends Controller{
     foreach ($scripts as $script) {
       if( !is_dir($script) ) {
         wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/js/' . $script);
+      }
+    }
+  }
+  
+  public function register_assets_admin() {
+    $js_folder = SD_PLUGIN_PATH . '/src/assets/admin/js/';
+    $css_folder = SD_PLUGIN_PATH . '/src/assets/admin/css/';
+    $scripts = scandir($js_folder);
+    //var_dump($scripts);
+    $styles = scandir($css_folder);
+    foreach ($styles as $style) {
+      if( !is_dir($style) ) {
+        wp_enqueue_style( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/admin/css/' . $style);
+      }
+    }
+    foreach ($scripts as $script) {
+      if( !is_dir($script) ) {
+        wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/admin/js/' . $script);
       }
     }
   }
