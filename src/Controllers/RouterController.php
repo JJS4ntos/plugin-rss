@@ -11,16 +11,14 @@ class RouterController {
   public function post($url, $callback){
     $this->resolveCallback($url, $callback, 'POST');
   }
-  
-  public function admin_page($name, $callback){
-    $this->register_admin_page($url, $callback);
-  }
 
-  private function register_admin_page(String $name, String $callback) {
+  public function register_admin_page(String $title, String $name, String $callback) {
     $meta = explode('@', $callback);
     $class = 'App\\Controllers\\'.$meta[0];
     $controller = new $class();
-    add_menu_page( 'Runcinator', 'Runcinator', 'manage_options', $name, array($controller, $meta[1]));
+    add_action('admin_menu', function() use($title, $name, $controller, $meta) {
+      add_submenu_page( sanitize_key(PLUGIN_NAME), PLUGIN_NAME, $title, 'manage_options', sanitize_key($name),  array( $controller, $meta[1] ) );
+    });
   }
 
   /*
