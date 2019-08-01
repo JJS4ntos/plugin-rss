@@ -8,12 +8,12 @@ class Setup extends Controller{
   public function __construct() {
     parent::__construct();
     add_action('wp_enqueue_scripts', array($this, 'register_assets') );
-    add_action('admin_menu', array($this, 'runcinator_page_setup') );
+    add_action('admin_menu', array($this, 'page_setup') );
     add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
   }
   
-  public function runcinator_page_setup(){
-    add_menu_page( 'Runcinator', 'Runcinator', 'manage_options', 'runcinator', array($this, 'admin_page'), 'dashicons-image-filter', 3 );
+  public function page_setup(){
+    add_menu_page( PLUGIN_NAME, PLUGIN_NAME, 'manage_options', sanitize_key(PLUGIN_NAME), array($this, 'admin_page'), 'dashicons-image-filter', 3 );
   }
   
   public function register_assets() {
