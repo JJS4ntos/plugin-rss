@@ -11,6 +11,17 @@ class RouterController {
   public function post($url, $callback){
     $this->resolveCallback($url, $callback, 'POST');
   }
+  
+  public function admin_page($name, $callback){
+    $this->register_admin_page($url, $callback);
+  }
+
+  private function register_admin_page(String $name, String $callback) {
+    $meta = explode('@', $callback);
+    $class = 'App\\Controllers\\'.$meta[0];
+    $controller = new $class();
+    add_menu_page( 'Runcinator', 'Runcinator', 'manage_options', $name, array($controller, $meta[1]));
+  }
 
   /*
     Retornaa funcção correspondente ao callback indicado seguindo o formato:
