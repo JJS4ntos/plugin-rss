@@ -1,9 +1,12 @@
 {
+    "name": "jjs4ntos/runcinator",
+    "description": "Runcinator is a framework for WordPress plugins. A way to make plugins more professional and escalable.",
     "autoload": {
       "psr-4": {"App\\": "src/"}
     },
     "require": {
-        "jenssegers/blade": "^1.2"
+        "jenssegers/blade": "^1.2",
+        "php": "^7.0",
     },
     "scripts": {
       "post-install-cmd": [
