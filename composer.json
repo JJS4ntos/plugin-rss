@@ -13,5 +13,8 @@
       "post-install-cmd": [
         "mkdir src/cache"  
       ]  
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
     }
 }
