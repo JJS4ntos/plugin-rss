@@ -24,12 +24,12 @@ class Setup extends Controller{
     $styles = scandir($css_folder);
     foreach ($styles as $style) {
       if( !is_dir($style) ) {
-        wp_enqueue_style( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/css/' . $style);
+        wp_enqueue_style( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/'.sanitize_key(PLUGIN_NAME).'/src/assets/css/' . $style);
       }
     }
     foreach ($scripts as $script) {
       if( !is_dir($script) ) {
-        wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/js/' . $script);
+        wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/'.sanitize_key(PLUGIN_NAME).'/src/assets/js/' . $script);
       }
     }
   }
@@ -42,12 +42,12 @@ class Setup extends Controller{
     $styles = scandir($css_folder);
     foreach ($styles as $style) {
       if( !is_dir($style) ) {
-        wp_enqueue_style( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/admin/css/' . $style);
+        wp_enqueue_style( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/'.sanitize_key(PLUGIN_NAME).'/src/assets/admin/css/' . $style);
       }
     }
     foreach ($scripts as $script) {
       if( !is_dir($script) ) {
-        wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/runcinator/src/assets/admin/js/' . $script);
+        wp_enqueue_script( URL_SCOPE . mt_rand(0, 9000), '/wp-content/plugins/'.sanitize_key(PLUGIN_NAME).'/src/assets/admin/js/' . $script);
       }
     }
   }
