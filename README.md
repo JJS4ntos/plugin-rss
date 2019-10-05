@@ -3,13 +3,16 @@
 </p>
 <h1 align="center">Runcinatur</h1>
 <p align="center">
-  <a href="https://runcinatur.github.io">DOCUMENTATION</a>
+  <a href="https://runcinatur.github.io">DOCS</a>
 </p>
 <p align="center">
-  <a href="https://www.codefactor.io/repository/github/runcinatur/runcinatur"><img src="https://www.codefactor.io/repository/github/runcinatur/runcinatur/badge" alt="CodeFactor" /></a>
+  <a href="https://www.codefactor.io/repository/github/runcinatur/runcinatur">
+    <img src="https://www.codefactor.io/repository/github/runcinatur/runcinatur/badge" alt="CodeFactor"/>
+  </a>
 </p>
-----------------
-Create WordPress plugins quickly and neatly and gain productivity.
+<p align="center">
+  Create WordPress plugins quickly and neatly and gain productivity.
+</p>
 
 # Requirements
   - PHP >= 5.6
