@@ -1,0 +1,27 @@
+<p align="center">
+  <img src="https://runcinatur.github.io/img/runcinatur-logo.svg" height="150">
+</p>
+
+# Runcinatur
+----------------
+Create WordPress plugins quickly and neatly and gain productivity.
+
+# Requirements
+
+  - PHP >= 5.6
+
+# Installing
+
+` composer create-project jjs4ntos/runcinatur `
+
+# What is Runcinatur?
+----------------
+Runcinatur is a micro-framework (or framework) to create plugins for WordPress. Its focused in organization, quality and production speed of project.
+Use recent libraries in your plugin like Blade, PHPUnit or any others just install via composer.
+
+# Why use Runcinatur?
+---------------
+Using Runcinatur you will have an organized and scalable project because your structure is designed for exponential growth of your plugin.
+
+---------------
+#### Runcinatur was created by Jair Júnior

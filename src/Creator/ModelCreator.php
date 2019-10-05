@@ -4,7 +4,12 @@ namespace App\Creator;
 use App\Console\CreatorInterface as creator;
 
 class ModelCreator implements creator{
-  
+
+
+  /**
+   * Create a model based commands
+   * @return
+   */
    public function create() {
      global $argv;
      if( isset($argv[2]) ) {
@@ -13,21 +18,27 @@ class ModelCreator implements creator{
         if( file_exists($file) ) {
           echo 'Model already exist!' . PHP_EOL;
         } else {
-          $controller = file_put_contents ( $file , $this->template(['className' => $name]) );   
+          $controller = file_put_contents ( $file , $this->template(['className' => $name]) );
         }
      }
-     
+
    }
-  
-   public function template($args) {
-     return "<?php 
+
+   /**
+    * Create model template
+    * @param  array $args Params will be used in template
+    * @return String      Class template
+    */
+   public function template(array $args) {
+     return "<?php
 namespace App\Models;
 
-use App\Models\Model;
+use WP_Post;
 
-class {$args['className']} extends Model {
+
+class {$args['className']} extends WP_User {
 
 }";
    }
-  
+
 }

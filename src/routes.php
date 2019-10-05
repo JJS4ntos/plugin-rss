@@ -8,5 +8,4 @@ use App\Controllers\RouterController;
 use App\Shortcodes\Register;
 
 $register = new Register();
-
 $router = new RouterController();

@@ -4,18 +4,30 @@ namespace App\Config;
 use App\Controllers\Controller;
 
 class Setup extends Controller{
-  
+
+  /**
+   * Call register functions to register pages and assets
+   */
   public function __construct() {
     parent::__construct();
     add_action('wp_enqueue_scripts', array($this, 'register_assets') );
     add_action('admin_menu', array($this, 'page_setup') );
     add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
   }
-  
-  public function page_setup(){
-    add_menu_page( PLUGIN_NAME, PLUGIN_NAME, 'manage_options', sanitize_key(PLUGIN_NAME), array($this, 'admin_page'), 'dashicons-image-filter', 3 );
+
+  /**
+   * Register menu link and plugin page
+   * @param  string $icon [description]
+   * @return
+   */
+  public function page_setup( $icon = 'dashicons-image-filter' ){
+    add_menu_page( PLUGIN_NAME, PLUGIN_NAME, 'manage_options', sanitize_key(PLUGIN_NAME), array($this, 'admin_page'), $icon, 3 );
   }
-  
+
+  /**
+   * Register all commons plugin assets
+   * @return
+   */
   public function register_assets() {
     $js_folder = SD_PLUGIN_PATH . '/src/assets/js/';
     $css_folder = SD_PLUGIN_PATH . '/src/assets/css/';
@@ -33,7 +45,11 @@ class Setup extends Controller{
       }
     }
   }
-  
+
+  /**
+   * Register only assets that will be use in admin page
+   * @return
+   */
   public function register_assets_admin() {
     $js_folder = SD_PLUGIN_PATH . '/src/assets/admin/js/';
     $css_folder = SD_PLUGIN_PATH . '/src/assets/admin/css/';
@@ -51,11 +67,19 @@ class Setup extends Controller{
       }
     }
   }
-  
+
+  /**
+   * Generate a view for admin page
+   * @return [type] [description]
+   */
   public function admin_page() {
-     echo $this->generateView('index', []); 
+     echo $this->generateView('index', []);
   }
-  
+
 }
 
+/**
+ * Automatically start plugin after index.php
+ * @var Setup
+ */
 $setup = new Setup();

@@ -6,20 +6,28 @@ use App\Creator\ModelCreator;
 use App\Creator\ViewCreator;
 
 class Engine {
-  
+
     private $root;
 
+    /**
+     * Run the reader for console
+     */
     public function __construct() {
         //global $argv;
         $this->create();
     }
 
+
+    /**
+     * Read commands from console and instance your creator
+     * @return
+     */
     public function create() {
         global $argv;
 
         if( isset($argv[1]) ) {
             switch($argv[1]) {
-                case 'controller': 
+                case 'controller':
                     $ccreator = new ControllerCreator();
                     $ccreator->create();
                 break;
@@ -40,6 +48,6 @@ class Engine {
         }
     }
 
-    
+
 
 }
