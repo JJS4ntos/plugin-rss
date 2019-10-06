@@ -15,6 +15,7 @@ class Setup extends Controller{
     add_action('wp_enqueue_scripts', array($this, 'register_assets') );
     add_action('admin_menu', array($this, 'page_setup') );
     add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
+    add_action('init', array($this, 'register_config'));
   }
 
   /**
@@ -70,12 +71,22 @@ class Setup extends Controller{
     }
   }
 
+  public function register_config() {
+    $feeds = ['agb', 'investing', 'arp'];
+    $options = ['category_', 'author_', 'period_', 'quantity_', 'status_'];
+    foreach( $feeds as $feed ) {
+      foreach ($options as $option) {
+        add_option( $option . $feed );
+      }
+    }
+  }
+
   /**
    * Generate a view for admin page
    * @return [type] [description]
    */
   public function admin_page() {
-     echo $this->generateView('index', []);
+     echo $this->generateView('configuration', []);
   }
 
 }

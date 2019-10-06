@@ -1,0 +1,9 @@
+.input-area {
+  margin: 10px 10px;
+}
+
+.input-area label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: block;
+}
