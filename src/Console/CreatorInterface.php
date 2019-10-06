@@ -9,6 +9,6 @@ interface CreatorInterface {
 
    public function create();
 
-   public function template($args);
+   public function template(array $args);
 
 }
