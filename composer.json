@@ -11,8 +11,8 @@
     },
     "scripts": {
       "post-install-cmd": [
-        "mkdir src/cache"  
-      ]  
+        "chmod -R 777 src/cache"  
+      ]
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4"

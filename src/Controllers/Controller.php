@@ -15,7 +15,7 @@ abstract class Controller {
    * Instance viewBuilder and load pages cached
    */
   public function __construct() {
-    $this->viewBuilder = new Blade( SD_PLUGIN_PATH . '/src/frontend', SD_PLUGIN_PATH . '/src/cache' );
+    $this->viewBuilder = new Blade( SD_PLUGIN_PATH . 'src/frontend', SD_PLUGIN_PATH . 'src/cache' );
   }
 
   /**

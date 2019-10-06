@@ -12,14 +12,10 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-if ( !file_exists('src/cache') ) {
-  mkdir('src/cache');
-}
-
-define('PLUGIN_NAME', 'Runcinator');
+define('PLUGIN_NAME', 'Runcinatur');
 define('SD_PATH', plugin_dir_url( __FILE__ ));
 define('SD_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
-define('URL_SCOPE', 'runcinator-api');
+define('URL_SCOPE', 'runcinatur-api');
 
 require_once 'vendor/autoload.php';
 require_once 'src/Config/Setup.php';
