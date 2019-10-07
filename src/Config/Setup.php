@@ -86,7 +86,7 @@ class Setup extends Controller{
    * @return [type] [description]
    */
   public function admin_page() {
-     echo $this->generateView('configuration', []);
+     echo $this->generateView('main', []);
   }
 
 }

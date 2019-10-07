@@ -5,6 +5,8 @@ use App\Controllers\Controller;
 
 class FeedController extends Controller {
 
+  public static $feeds = ['agb', 'arp', 'investing'];
+
   public function __construct(){
     parent::__construct();
     $this->saveOptions();
@@ -47,6 +49,7 @@ class FeedController extends Controller {
       'period' => get_option( 'period_'.$feed, '' ),
       'quantity' => get_option( 'quantity_'.$feed, '' ),
       'status' => get_option( 'status_'.$feed, '' ),
+      'url' => get_option( 'url_'.$feed, '' ),
     ];
     return $options;
   }
@@ -60,6 +63,7 @@ class FeedController extends Controller {
         update_option( 'period_' . $name, $_POST['period'] );
         update_option( 'status_' . $name,  $_POST['status'] );
         update_option( 'quantity_' . $name,  $_POST['quantity'] );
+        update_option( 'url_' . $name,  $_POST['url'] );
       }
     }
   }

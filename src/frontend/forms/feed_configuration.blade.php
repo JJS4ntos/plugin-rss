@@ -34,6 +34,11 @@
     <input name="quantity" type="number" id="quantity" placeholder="Informe a quantidade de posts"
            value="{{ $options['quantity'] }}" class="regular-text">
   </div>
+  <div class="input-area">
+    <label for="url">URL</label>
+    <input name="url" type="url" id="url" placeholder="Informe a URL"
+           value="{{ $options['url'] }}" class="regular-text">
+  </div>
   <input type="hidden" name="period" value="">
   <input type="hidden" name="feed_slug" value="{{ $feed_slug }}">
   <div class="input-area">
