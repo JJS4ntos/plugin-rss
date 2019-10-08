@@ -2,11 +2,12 @@
 @section('content')
   <h2>Faça importações ou configure importações periódicas</h2>
   <hr>
+  <div class="errors-warning">
+  </div>
   <p class="status-importation"></p>
   <button type="button" class="button button-primary button-hero" id="import_content">Importar conteúdos</button>
   <script type="text/javascript" defer>
     function addPostAGB(content) {
-      console.log(content);
       $.ajax({
         url: '{{ get_rest_url(null, "rss-importer-wk-api/create-post") }}',
         type: 'POST',
@@ -15,6 +16,10 @@
           content: content.description,
           guid: content.guid,
           feed: 'agb'
+        },
+        complete: function(data) {
+          console.log(data);
+          $('.errors-warning').html( $('.errors-warning').html() + data.responseText );
         }
       });
     }
