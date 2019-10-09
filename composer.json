@@ -13,7 +13,11 @@
     },
     "scripts": {
       "post-install-cmd": [
+<<<<<<< HEAD
         "chmod -R 777 src/cache"
+=======
+        "chmod -R 777 src/cache"  
+>>>>>>> 94e5deac09eb81d74f6715467812c477111dea70
       ]
     },
     "require-dev": {
