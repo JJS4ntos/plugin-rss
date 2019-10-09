@@ -3,6 +3,7 @@
   <h2>Faça importações ou configure importações periódicas</h2>
   <hr>
   <div class="errors-warning">
+    <p>Aguardando inicio da importação...</p>
   </div>
   <p class="status-importation"></p>
   <button type="button" class="button button-primary button-hero" id="import_content">Importar conteúdos</button>
@@ -18,8 +19,9 @@
           feed: 'agb'
         },
         complete: function(data) {
-          console.log(data);
-          $('.errors-warning').html( $('.errors-warning').html() + data.responseText );
+          if(data.responseText !== null) {
+            $('.errors-warning').html( $('.errors-warning').html() + data.responseText );
+          }
         }
       });
     }
@@ -46,6 +48,17 @@
               addPostAGB( r.agb.channel.item[agb_post]);
             }
           }
+          console.log('Solicitando crawler...');
+          console.log(r.arp.channel.item[0]);
+          $.ajax({
+            url: '{{ get_rest_url(null, "rss-importer-wk-api/crawler/get-content") }}',
+            type: 'POST',
+            data: {url: r.arp.channel.item[0].link},
+            completed: function(data) {
+              console.log('Resposta do crawler');
+              console.log(data.responseText);
+            }
+          });
         })
       });
     });

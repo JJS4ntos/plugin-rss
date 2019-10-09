@@ -4,9 +4,13 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Controllers\FeedController;
 
+
 class SyncController extends Controller {
 
-  private function sync_agencia_brasil($url){
+  private function parseRequest($url){
+    if(empty($url)){
+      return false;
+    }
     $content = file_get_contents($url);
     $xml = simplexml_load_string($content);
     $json = json_encode( $xml );
@@ -14,12 +18,16 @@ class SyncController extends Controller {
     return $array;
   }
 
-  public function sync_arena_pavini($url){
+  private function sync_agencia_brasil($url){
+    return $this->parseRequest($url);
+  }
 
+  public function sync_arena_pavini($url){
+    return $this->parseRequest($url);
   }
 
   public function sync_investing($url){
-
+    return $this->parseRequest($url);
   }
 
   public function sync() {

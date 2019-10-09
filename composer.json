@@ -7,17 +7,14 @@
     },
     "require": {
         "jenssegers/blade": "^1.2",
-        "php": "^7.0"
+        "php": "^7.0",
+        "symfony/dom-crawler": "^4.3",
+        "symfony/css-selector": "^4.3"
     },
     "scripts": {
       "post-install-cmd": [
-<<<<<<< HEAD
-        "chmod -R 777 src/cache"  
+        "chmod -R 777 src/cache"
       ]
-=======
-        "mkdir src/cache"  
-      ]  
->>>>>>> fe1f265821e795cf053ce425226eeda0c45fad3a
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4"

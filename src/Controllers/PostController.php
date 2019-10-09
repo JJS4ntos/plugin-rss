@@ -21,7 +21,7 @@ class PostController extends Controller {
           $result = wp_insert_post($data);
           update_post_meta( $result, 'guid_rsswk', $guid );
         } else {
-          echo '<div class="notice notice-warning"><p>'. $_POST['title']. '</p></div>';
+          echo '<div class="notice notice-warning is-dismissible"><p>"<b>'. $_POST['title']. '</b>" não foi inserido, pois já existe.</p></div>';
           exit;
         }
       }
