@@ -43,14 +43,18 @@
             '<div><span class="dashicons dashicons-yes"></span> Dados obtidos</div>'+
             '<div><span class="spinner is-active"></span> Criando postagens...</div>'
           );
-          if( r.agb !== null ) {
+          /*if( r.agb !== null ) {
             for (var agb_post in r.agb.channel.item) {
               addPostAGB( r.agb.channel.item[agb_post]);
             }
-          }
-          console.log('Solicitando crawler...');
-          console.log(r.arp.channel.item[0]);
-          $.ajax({
+          }*/
+          console.log(r.arp.channel.item[0].description);
+          /*if( r.arp !== null ) {
+            for (var arp_post in r.arp.channel.item) {
+
+            }
+          }*/
+          /*$.ajax({
             url: '{{ get_rest_url(null, "rss-importer-wk-api/crawler/get-content") }}',
             type: 'POST',
             data: {url: r.arp.channel.item[0].link},
@@ -58,7 +62,8 @@
               console.log('Resposta do crawler');
               console.log(data.responseText);
             }
-          });
+          });*/
+          //console.log(r.arp.channel.item[0]);
         })
       });
     });

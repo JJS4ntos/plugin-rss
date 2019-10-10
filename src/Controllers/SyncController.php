@@ -7,15 +7,17 @@ use App\Controllers\FeedController;
 
 class SyncController extends Controller {
 
-  private function parseRequest($url){
+  private function parseRequest($url, $json_format = true){
     if(empty($url)){
       return false;
     }
     $content = file_get_contents($url);
-    $xml = simplexml_load_string($content);
-    $json = json_encode( $xml );
-    $array = json_decode( $json, true );
-    return $array;
+    $result = simplexml_load_string($content);
+    if( $json_format ) {
+      $json = json_encode( $result );
+      $result = json_decode( $json, true );
+    }
+    return $result;
   }
 
   private function sync_agencia_brasil($url){
@@ -23,7 +25,7 @@ class SyncController extends Controller {
   }
 
   public function sync_arena_pavini($url){
-    return $this->parseRequest($url);
+    return $this->parseRequest($url, false);
   }
 
   public function sync_investing($url){
@@ -48,7 +50,7 @@ class SyncController extends Controller {
           break;
         }
       }
-      return json_encode($contents);
+      return $contents;
     }
   }
 
