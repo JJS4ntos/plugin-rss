@@ -54,6 +54,15 @@ class FeedController extends Controller {
     return $options;
   }
 
+  public function getFeedQuantities() {
+    $quantities = [
+      'quantity_agb' => get_option( 'quantity_agb', '5' ),
+      'quantity_arp' => get_option( 'quantity_arp', '5' ),
+      'quantity_investing' => get_option( 'quantity_investing', '5' ),
+    ];
+    return json_encode($quantities);
+  }
+
   private function saveOptions() {
     if($_POST) {
       if( isset($_POST['feed_slug']) ) {

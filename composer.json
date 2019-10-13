@@ -9,7 +9,8 @@
         "jenssegers/blade": "^1.2",
         "php": "^7.0",
         "symfony/dom-crawler": "^4.3",
-        "symfony/css-selector": "^4.3"
+        "symfony/css-selector": "^4.3",
+        "dg/rss-php": "^1.4"
     },
     "scripts": {
       "post-install-cmd": [

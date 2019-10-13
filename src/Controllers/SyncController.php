@@ -3,21 +3,21 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Controllers\FeedController;
-
+use \Feed;
 
 class SyncController extends Controller {
 
-  private function parseRequest($url, $json_format = true){
-    if(empty($url)){
-      return false;
+  private function parseRequest($url) {
+    try{
+      $rss = Feed::loadRss($url);
+      $result = [];
+      foreach( $rss->item as $item ) {
+        $result[] = (array)$item;
+      }
+      return json_encode($result);
+    } catch(FeedException $e) {
+      echo "Erro ao carregar feed[$url]: {$e->getMessage()}";
     }
-    $content = file_get_contents($url);
-    $result = simplexml_load_string($content);
-    if( $json_format ) {
-      $json = json_encode( $result );
-      $result = json_decode( $json, true );
-    }
-    return $result;
   }
 
   private function sync_agencia_brasil($url){
@@ -43,10 +43,10 @@ class SyncController extends Controller {
             $contents['agb'] = $this->sync_agencia_brasil($url);
           break;
           case 'arp':
-            $contents['arp'] = $this->sync_arena_pavini($url);
+            $contents['arp'] = [];///$this->sync_arena_pavini($url);
           break;
           case 'investing':
-            $contents['investing'] = $this->sync_investing($url);
+            $contents['investing'] = [];
           break;
         }
       }
