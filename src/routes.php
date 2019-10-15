@@ -10,6 +10,7 @@ use App\Shortcodes\Register;
 $register = new Register();
 $router = new RouterController();
 
+$router->hook('rsswkimporter', 'SyncController@syncCron');
 $router->post('/sync', 'SyncController@sync');
 $router->post('/create-post', 'PostController@createFromWeb');
 $router->get('/quantities', 'FeedController@getFeedQuantities');

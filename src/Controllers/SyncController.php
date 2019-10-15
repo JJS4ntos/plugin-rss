@@ -54,4 +54,11 @@ class SyncController extends Controller {
     }
   }
 
+  public function syncCron() {
+    wp_insert_post([
+      'post_title' => 'Sync Cron funcionando!',
+      'post_content' => 'Isso está muito bom!'
+    ]);
+  }
+
 }

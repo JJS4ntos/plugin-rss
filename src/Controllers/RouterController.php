@@ -5,6 +5,31 @@ namespace App\Controllers;
 class RouterController {
 
   /**
+   * Execute a hook
+   * @param  String $hook      Hook name
+   * @param  function $callback Function will be executed
+   * @return
+   */
+  public function hook(String $hook, String $callback) {
+    $this->resolveHook($hook, $callback);
+  }
+
+  /**
+   * Execute a controller method inside a hook
+   * @param  String $hook      Hook name
+   * @param  function $callback Function will be executed
+   * @return
+   */
+  private function resolveHook($hook, $callback) {
+    $meta = explode('@', $callback);
+    $class = 'App\\Controllers\\'.$meta[0];
+    $controller = new $class();
+    add_action($hook, function() use($controller, $meta) {
+      echo $controller->{$meta[1]}();
+    });
+  }
+
+  /**
    * Capture GET request and execute a function
    * @param  String $url      Endpoint of request
    * @param  function $callback Function will be executed

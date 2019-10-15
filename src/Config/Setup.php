@@ -16,6 +16,9 @@ class Setup extends Controller{
     add_action('admin_menu', array($this, 'page_setup') );
     add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
     add_action('init', array($this, 'register_config'));
+    if ( ! wp_next_scheduled( 'rsswkimporter' ) ) {
+      wp_schedule_event( strtotime( '01:14:00' ), 'daily', 'rsswkimporter' );
+    }
   }
 
   /**
@@ -83,7 +86,7 @@ class Setup extends Controller{
 
   /**
    * Generate a view for admin page
-   * @return [type] [description]
+   * @return
    */
   public function admin_page() {
      echo $this->generateView('main', []);
