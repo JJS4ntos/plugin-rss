@@ -13,3 +13,11 @@
   max-height: 300px;
   overflow-y: scroll;
 }
+
+.form-config h2 {
+  margin-bottom: 30px;
+}
+
+.form-config div{
+  margin-bottom: 25px;
+}

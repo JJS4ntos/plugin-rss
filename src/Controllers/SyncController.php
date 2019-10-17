@@ -61,4 +61,16 @@ class SyncController extends Controller {
     ]);
   }
 
+  public function config() {
+    if( $_POST ) {
+      $time = $_POST['period'];
+      $enabled = $_POST['enable_period'];
+      update_option('rsswk_time_schedule', $time);
+      update_option('rsswk_time_schedule_isEnabled', $enabled);
+    }
+    $time = get_option('rsswk_time_schedule', '');
+    $enabled = update_option('rsswk_time_schedule_isEnabled', '');
+    echo $this->generateView('config', ['period' => $time, 'enabled' => $enabled]);
+  }
+
 }
