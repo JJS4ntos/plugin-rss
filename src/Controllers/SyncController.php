@@ -56,7 +56,7 @@ class SyncController extends Controller {
 
   public function syncCron() {
     wp_insert_post([
-      'post_title' => 'Sync Cron funcionando!',
+      'post_title' => 'Sync Cron funcionando!['.date('now').']',
       'post_content' => 'Isso está muito bom!'
     ]);
   }
@@ -69,7 +69,7 @@ class SyncController extends Controller {
       update_option('rsswk_time_schedule_isEnabled', $enabled);
     }
     $time = get_option('rsswk_time_schedule', '');
-    $enabled = update_option('rsswk_time_schedule_isEnabled', '');
+    $enabled = get_option('rsswk_time_schedule_isEnabled', '0');
     echo $this->generateView('config', ['period' => $time, 'enabled' => $enabled]);
   }
 

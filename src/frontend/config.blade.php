@@ -8,6 +8,12 @@
                 A importação está programada para a próxima {{ $period }} horas.
             </p>
         </div>
+    @else 
+        <div class="notice notice-warning inline">
+            <p>
+                A importação não automática não está ativada.
+            </p>
+        </div>
     @endif
     <div>
         <label for="period">Hora da importação</label>

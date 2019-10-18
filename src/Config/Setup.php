@@ -16,8 +16,10 @@ class Setup extends Controller{
     add_action('admin_menu', array($this, 'page_setup') );
     add_action('admin_enqueue_scripts', array($this, 'register_assets_admin') );
     add_action('init', array($this, 'register_config'));
-    if ( ! wp_next_scheduled( 'rsswkimporter' ) ) {
-      wp_schedule_event( strtotime( get_option('rsswk_time_schedule', $default) ), 'daily', 'rsswkimporter' );
+    if ( get_option('rsswk_time_schedule_isEnabled', false) ) {
+      if ( ! wp_next_scheduled( 'rsswkimporter' ) ) {
+        wp_schedule_event( strtotime( get_option('rsswk_time_schedule', $default) ), 'daily', 'rsswkimporter' );
+      }
     }
   }
 
