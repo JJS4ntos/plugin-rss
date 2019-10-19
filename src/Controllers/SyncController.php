@@ -3,18 +3,33 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Controllers\FeedController;
+use App\Controllers\PostController;
 use \Feed;
 
 class SyncController extends Controller {
+
+  private $cron_mode = false;
+  private $current_feed = ''; //current feed on cron loop.
+
+  private function cronAdd($item) {
+    $postController = new PostController();
+    $postController->createFromCron($item, $this->current_feed);
+  }
 
   private function parseRequest($url) {
     try{
       $rss = Feed::loadRss($url);
       $result = [];
       foreach( $rss->item as $item ) {
-        $result[] = (array)$item;
+        if( $this->cron_mode ) {
+          $this->cronAdd($item);
+        } else {
+          $result[] = (array)$item;
+        }
       }
-      return json_encode($result);
+      if( !$this->cron_mode ) {
+        return json_encode($result);
+      }
     } catch(FeedException $e) {
       echo "Erro ao carregar feed[$url]: {$e->getMessage()}";
     }
@@ -37,28 +52,19 @@ class SyncController extends Controller {
       $contents = [];
       foreach( FeedController::$feeds as $feed ) {
         $url = get_option( 'url_' . $feed );
-        $content = [];
-        switch($feed) {
-          case 'agb':
-            $contents['agb'] = $this->sync_agencia_brasil($url);
-          break;
-          case 'arp':
-            $contents['arp'] = [];///$this->sync_arena_pavini($url);
-          break;
-          case 'investing':
-            $contents['investing'] = [];
-          break;
-        }
+        $contents[$feed] = $this->parseRequest($url);
       }
       return $contents;
     }
   }
 
   public function syncCron() {
-    wp_insert_post([
-      'post_title' => 'Sync Cron funcionando!['.date('now').']',
-      'post_content' => 'Isso está muito bom!'
-    ]);
+    $this->cron_mode = true;
+    foreach( FeedController::$feeds as $feed ) {
+      $url = get_option( 'url_' . $feed );
+      $this->current_feed = $feed;
+      $this->parseRequest($url);
+    }
   }
 
   public function config() {

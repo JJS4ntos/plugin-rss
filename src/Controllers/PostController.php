@@ -5,7 +5,7 @@ use App\Controllers\Controller;
 
 class PostController extends Controller {
 
-  private function create(array $args){
+  public function create(array $args){
     $guid = $args['guid'];
     if( !$this->checkIfExist($guid, $args['title']) ) {
       $tmp = $args['pubDate']; 
@@ -45,7 +45,24 @@ class PostController extends Controller {
     } else {
       return 'Não há dados suficientes para a criação do conteúdo';
     }
-    
+  }
+
+  public function createFromCron($item, $feed) {
+    $content = $item->description;
+    if( empty($item->description) ) {
+      if( !empty($item->{'content:encoded'}) ) {
+        $content = $item->{'content:encoded'};
+      }
+    }
+    $date = new \DateTime($item->pubDate);
+    $args = [ 
+      'title' => $item->title,
+      'content' => $content,
+      'feed' => $feed,
+      'pubDate' => $date->format('Y-m-d H:i:s'),
+      'guid' => $item->link
+    ];
+    return $this->create($args);
   }
 
   private function checkIfExist($guid, $title) {
