@@ -69,6 +69,7 @@ class SyncController extends Controller {
 
   public function config() {
     if( $_POST ) {
+      wp_clear_scheduled_hook( SCHEDULE_HOOK );
       $time = $_POST['period'];
       $enabled = $_POST['enable_period'];
       update_option('rsswk_time_schedule', $time);

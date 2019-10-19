@@ -16,6 +16,7 @@ define('PLUGIN_NAME', 'RSSWKImporter');
 define('SD_PATH', plugin_dir_url( __FILE__ ));
 define('SD_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define('URL_SCOPE', 'rss-importer-wk-api');
+define('SCHEDULE_HOOK', 'rsswkimporter');
 
 require_once 'vendor/autoload.php';
 require_once 'src/Config/Setup.php';

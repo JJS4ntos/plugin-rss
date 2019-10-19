@@ -24,7 +24,7 @@ class PostController extends Controller {
       return '';
     } else {
       echo '<div class="notice notice-warning is-dismissible"><p>"<b>'. $args['title']. '</b>" não foi inserido, pois já existe.</p></div>';
-      exit;
+      return '';
     }
   }
 

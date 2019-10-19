@@ -19,8 +19,8 @@ class Setup extends Controller{
     if ( get_option('rsswk_time_schedule_isEnabled', false) ) {
       $date = new \DateTime(get_option('rsswk_time_schedule', $default), new \DateTimeZone( get_option('timezone_string') ));
       $timestamp = $date->format('U');
-      if ( ! wp_next_scheduled( 'rsswkimporter' ) ) {
-        wp_schedule_event( $timestamp, 'daily', 'rsswkimporter' );
+      if ( ! wp_next_scheduled( SCHEDULE_HOOK ) ) {
+        wp_schedule_event( $timestamp, 'daily', SCHEDULE_HOOK );
       }
     }
   }
